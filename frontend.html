@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function action(event){
+            var x = document.querySelectorAll('select')
+            for (let i = 0; i < x.length; i++) {
+                if (x[i]!= event){
+                    x[i].options[event.selectedIndex].setAttribute('disabled', 'disabled');      
+                }
+            }
+        }
+
+        function reset() {
+            var selects = document.querySelectorAll('select');
+            for (let i = 0; i < selects.length; i++) {
+                selects[i].value = "null";
+                var options = selects[i].querySelectorAll('option');
+                for (let j = 0; j < options.length; j++) {
+                    options[j].removeAttribute('disabled');
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Voting Form</h1>
+    <p> Please enter your voter ID and registeration PIN. These are found on the card that
+        you were given by your local election agent.
+    </p>
+
+    <form>
+        <div class="left-col">
+            <div>
+                <label for="voterID">Voter ID:</label><br>
+                <input type="text" id="voterID" name="voterID" required>
+            </div>
+            <div>
+                <label for="pin">Registration PIN:</label><br>
+        <input type="password" id="pin" name="pin" required>            </div>
+        </div>
+       
+       
+        <div class="right-col">
+            <div>
+                <label for="choice1">1st Choice:</label>
+                <select id="choice1" name="choice1" class="choice" onchange="action(this)">
+                    <option value="null">Select a nominee</option>
+                    <option value="nominee1">Nominee 1</option>
+                    <option value="nominee2">Nominee 2</option>
+                    <option value="nominee3">Nominee 3</option>
+                </select>
+            </div>
+            
+            <div>
+                <label for="choice2">2nd Choice:</label>
+                <select id="choice2" name="choice2" class="choice" onchange="action(this)">
+                    <option value="null">Select a nominee</option>
+                    <option value="nominee1">Nominee 1</option>
+                    <option value="nominee2">Nominee 2</option>
+                    <option value="nominee3">Nominee 3</option>
+                </select>
+            </div>
+            
+            <div>
+                <label for="choice3">3rd Choice:</label>
+                <select id="choice3" name="choice3" class="choice" onchange="action(this)">
+                    <option value="null">Select a nominee</option>
+                    <option value="nominee1">Nominee 1</option>
+                    <option value="nominee2">Nominee 2</option>
+                    <option value="nominee3">Nominee 3</option>
+                </select>
+            </div>
+    
+            <div class="button-container">
+                <button type="button" id="submitVote">Submit Vote</button>
+                <button type="button" id="reset" onclick="reset()" value="reset">Reset</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
