@@ -35,40 +35,53 @@
     </p>
 
     <form>
-        <label for="voterID">Voter ID:</label><br>
-        <input type="text" id="voterID" name="voterID" required><br><br>
-        <label for="pin">Registration PIN:</label><br>
-        <input type="password" id="pin" name="pin" required><br><br>
+        <div class="left-col">
+            <div>
+                <label for="voterID">Voter ID:</label><br>
+                <input type="text" id="voterID" name="voterID" required>
+            </div>
+            <div>
+                <label for="pin">Registration PIN:</label><br>
+        <input type="password" id="pin" name="pin" required>            </div>
+        </div>
+       
+       
+        <div class="right-col">
+            <div>
+                <label for="choice1">1st Choice:</label>
+                <select id="choice1" name="choice1" class="choice" onchange="action(this)">
+                    <option value="null">Select a nominee</option>
+                    <option value="nominee1">Nominee 1</option>
+                    <option value="nominee2">Nominee 2</option>
+                    <option value="nominee3">Nominee 3</option>
+                </select>
+            </div>
+            
+            <div>
+                <label for="choice2">2nd Choice:</label>
+                <select id="choice2" name="choice2" class="choice" onchange="action(this)">
+                    <option value="null">Select a nominee</option>
+                    <option value="nominee1">Nominee 1</option>
+                    <option value="nominee2">Nominee 2</option>
+                    <option value="nominee3">Nominee 3</option>
+                </select>
+            </div>
+            
+            <div>
+                <label for="choice3">3rd Choice:</label>
+                <select id="choice3" name="choice3" class="choice" onchange="action(this)">
+                    <option value="null">Select a nominee</option>
+                    <option value="nominee1">Nominee 1</option>
+                    <option value="nominee2">Nominee 2</option>
+                    <option value="nominee3">Nominee 3</option>
+                </select>
+            </div>
+    
+            <div class="button-container">
+                <button type="button" id="submitVote">Submit Vote</button>
+                <button type="button" id="reset" onclick="reset()" value="reset">Reset</button>
+            </div>
+        </div>
     </form>
-
-    1st Choice:
-    <br>
-    <select id="choice1" name="choice1" class="choice" onchange="action(this)">
-        <option value="null">Select a nominee</option>
-        <option value="nominee1">Nominee 1</option>
-        <option value="nominee2">Nominee 2</option>
-        <option value="nominee3">Nominee 3</option>
-    </select>
-    <br>
-    2nd Choice:
-    <br>
-    <select id="choice2" name="choice2" class="choice" onchange="action(this)">
-        <option value="null">Select a nominee</option>
-        <option value="nominee1">Nominee 1</option>
-        <option value="nominee2">Nominee 2</option>
-        <option value="nominee3">Nominee 3</option>
-    </select>
-    <br>
-    3rd Choice:
-    <br>
-    <select id="choice3" name="choice3" class="choice" onchange="action(this)">
-        <option value="null">Select a nominee</option>
-        <option value="nominee1">Nominee 1</option>
-        <option value="nominee2">Nominee 2</option>
-        <option value="nominee3">Nominee 3</option>
-    </select>
-    <br>
-    <button type="button" id="submitVote">Submit Vote</button>
-    <button type="button" id="reset" onclick="reset()" value="reset">Reset</button>
 </body>
 </html>
