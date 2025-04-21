@@ -1,9 +1,9 @@
 // Connect to Mongo DB client, connect function
 const MongoClient = require("mongodb").MongoClient;
 const ObjectID = require('mongodb').ObjectID;
-const dbname = "crud_mongodb";
-const url = "mongodb://localhost:27017";
-const mongoOptions = {useNewUrlPasser : true};
+const dbname = "mongodb_crud_nosqllab";
+const url = "mongodb+srv://tommyztx:koJpZu2gCCeMh8rk@cluster0.ylfmjnf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const mongoOptions = {useNewUrlParser : true};
 
 const state = {
     db : null
@@ -11,7 +11,7 @@ const state = {
 
 const connect = (cb) =>{
     if(state.db)
-        (cb);
+        cb();
     else {
         MongoClient.connect(url,mongoOptions, (err,client)=>{
             if(err) {
