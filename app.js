@@ -7,6 +7,20 @@ const path = require("path");
 const db = require("./db");
 const collection = "votes"
 
+app.get('/', (req,res)=>{
+    res.sendFile(path.join(__dirname,'frontend.html'));
+});
+
+app.get('/Votes', async (req,res) => {
+    try {
+        const docs = await db.getDB().collection(collection).find({}).toArray();
+        console.log("Recieved Request successfully");
+        res.json(docs);
+    }catch(err) {
+        console.log(err);
+    }
+});
+
 db.connect((err)=>{
     if(err) {
         console.log("Failed to connect to database");
@@ -18,5 +32,12 @@ db.connect((err)=>{
         });
     }
 });
+
+(async () => {
+    await db.connect();
+    app.listen(3000, () => {
+        console.log("Listening on port 3000, connected");
+    })
+})();
 
 

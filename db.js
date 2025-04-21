@@ -1,35 +1,31 @@
 // Connect to Mongo DB client, connect function
-const MongoClient = require("mongodb").MongoClient;
+const {MongoClient,ServerApiVersion }= require("mongodb");
 const ObjectID = require('mongodb').ObjectID;
 const dbname = "mongodb_crud_nosqllab";
-const url = "mongodb+srv://tommyztx:koJpZu2gCCeMh8rk@cluster0.ylfmjnf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-const mongoOptions = {useNewUrlParser : true};
+const url = "mongodb+srv://tommyzheng:.2W9LnzVY-wGq9K@cluster0.ylfmjnf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
-const state = {
-    db : null
-};
+const client = new MongoClient(url, {
+    serverApi: ServerApiVersion.v1,
+});
 
-const connect = (cb) =>{
-    if(state.db)
-        cb();
-    else {
-        MongoClient.connect(url,mongoOptions, (err,client)=>{
-            if(err) {
-                cb(err);
-            } else {
-                state.db = client.db(dbname);
-                cb();
-            }
-        });
-    }
+let db;
+
+async function connect(){
+
+    await client.connect();
+    db = client.db(dbname);
+    await db.command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+
 }
+connect().catch(console.dir);
 
 const getPrimaryKey = (_id)=> {
     return ObjectID(_id);
 }
 
 const getDB = ()=>{
-    return state.db;
+    return db;
 }
 
 module.exports = {getDB, connect, getPrimaryKey}
