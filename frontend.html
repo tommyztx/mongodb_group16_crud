@@ -6,6 +6,27 @@
     <title>Voting Form</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function action(event){
+            var x = document.querySelectorAll('select')
+            for (let i = 0; i < x.length; i++) {
+                if (x[i]!= event){
+                    x[i].options[event.selectedIndex].setAttribute('disabled', 'disabled');      
+                }
+            }
+        }
+
+        function reset() {
+            var selects = document.querySelectorAll('select');
+            for (let i = 0; i < selects.length; i++) {
+                selects[i].value = "null";
+                var options = selects[i].querySelectorAll('option');
+                for (let j = 0; j < options.length; j++) {
+                    options[j].removeAttribute('disabled');
+                }
+            }
+        }
+    </script>
 </head>
 <body>
     <h1>Voting Form</h1>
@@ -22,7 +43,8 @@
 
     1st Choice:
     <br>
-    <select id="choice1" name="choice1" class="choice">
+    <select id="choice1" name="choice1" class="choice" onchange="action(this)">
+        <option value="null">Select a nominee</option>
         <option value="nominee1">Nominee 1</option>
         <option value="nominee2">Nominee 2</option>
         <option value="nominee3">Nominee 3</option>
@@ -30,7 +52,8 @@
     <br>
     2nd Choice:
     <br>
-    <select id="choice2" name="choice2" class="choice">
+    <select id="choice2" name="choice2" class="choice" onchange="action(this)">
+        <option value="null">Select a nominee</option>
         <option value="nominee1">Nominee 1</option>
         <option value="nominee2">Nominee 2</option>
         <option value="nominee3">Nominee 3</option>
@@ -38,12 +61,14 @@
     <br>
     3rd Choice:
     <br>
-    <select id="choice3" name="choice3" class="choice">
+    <select id="choice3" name="choice3" class="choice" onchange="action(this)">
+        <option value="null">Select a nominee</option>
         <option value="nominee1">Nominee 1</option>
         <option value="nominee2">Nominee 2</option>
         <option value="nominee3">Nominee 3</option>
     </select>
     <br>
     <button type="button" id="submitVote">Submit Vote</button>
+    <button type="button" id="reset" onclick="reset()" value="reset">Reset</button>
 </body>
 </html>
