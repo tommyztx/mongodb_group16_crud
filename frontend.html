@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Voting Form</title>
-  <link rel="stylesheet" src="styles.css" />
+  <link rel="stylesheet" src="/styles.css" />
 </head>
 <body>
   <h1>Voting Form</h1>
@@ -54,40 +54,9 @@
 
     <div class="button-container">
       <button type="button" id="submitVote">Submit Vote</button>
-      <button type="button" id="reset">Reset</button>
+      <button type="button">Reset</button>
     </div>
   </form>
-
-  <script>
-    window.onload = function () {
-      document.getElementById("submitVote").onclick = function () {
-        const voterID = document.getElementById("voterID").value.trim();
-        const pin = document.getElementById("pin").value.trim();
-        const choice1 = document.getElementById("choice1").value;
-        const choice2 = document.getElementById("choice2").value;
-        const choice3 = document.getElementById("choice3").value;
-
-        if (!voterID || !pin || choice1 === "null" || choice2 ===
-"null" || choice3 === "null") {
-          alert("Error: Fill out all fields");
-          return;
-        }
-        if (choice1 == choice2 || choice2 == choice3 || choice3 == choice1){
-          alert("Error: Duplicate candidates");
-          return;
-        }
-
-        alert("Vote submitted successfully!");
-      };
-
-      document.getElementById("reset").onclick = function () {
-        document.getElementById("voterID").value = "";
-        document.getElementById("pin").value = "";
-        document.getElementById("choice1").value = "null";
-        document.getElementById("choice2").value = "null";
-        document.getElementById("choice3").value = "null";
-      };
-    };
-  </script>
+  <script src="/script.js"></script>
 </body>
 </html>
